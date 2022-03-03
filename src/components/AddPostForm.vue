@@ -49,7 +49,8 @@ export default defineComponent({
             console.warn(res.data)
           })
           .catch((error) =>{
-            console.warn(error)
+            console.log(error.data)
+            return Promise.reject(error)
           })
     },
   }
