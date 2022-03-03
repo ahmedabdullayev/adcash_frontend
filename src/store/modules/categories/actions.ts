@@ -7,7 +7,7 @@ export default {
         return new Promise<Categories[]>((resolve, reject) => {
             axios({
                 method: 'get',
-                url: "http://localhost:8000/api/categories"
+                url: "/categories"
             })
                 .then((response: AxiosResponse) =>{
                     commit("setAllCategories", response.data)
@@ -17,5 +17,20 @@ export default {
                     reject(err)
                 })
         })
-    }
+    },
+    DELETE_CATEGORY({commit}: {commit: Commit}, id:number) : Promise<Categories[]> {
+        return new Promise<Categories[]>((resolve, reject) => {
+            axios({
+                method: 'delete',
+                url: '/category/'+id
+            })
+                .then((response : AxiosResponse) =>{
+                    commit('deleteCategory', id);
+                    return resolve(<Categories[]> response.data)
+                })
+                .catch((err: Error) => {
+                    reject(err)
+                })
+        })
+    },
 }

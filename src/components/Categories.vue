@@ -3,7 +3,7 @@
   <div class="a" v-for="category in allCategories" :key="category.id" >
     <h2>{{ category.name }}</h2>
     <router-link class="rout" :to="`/posts/${category.name}/${category.id}`">{{ category.name }}</router-link> |
-    <router-link class="rout" :to="`/category/edit/${category.name}/${category.id}`">Edit</router-link>
+    <a v-on:click="deleteCategory(category.id)" class="rout">Delete</a>
   </div>
 </div>
 </template>
@@ -11,6 +11,7 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import {mapActions, mapGetters} from "vuex";
+import axios from "axios";
 
 export default defineComponent({
   name: "Categories",
@@ -26,8 +27,12 @@ export default defineComponent({
   },
   methods: {
     ...mapActions('categories',[
-        'FETCH_CATEGORIES'
-    ])
+        'FETCH_CATEGORIES',
+        'DELETE_CATEGORY'
+    ]),
+    async deleteCategory(id: number){
+     await this.DELETE_CATEGORY(id)
+    }
   },
   async mounted(){
     try {

@@ -44,7 +44,7 @@ export default defineComponent({
   },
   methods:{
     submitForm(){
-      axios.post('http://127.0.0.1:8000/api/posts', this.form)
+      axios.post('/posts', this.form)
           .then((res) =>{
             console.warn(res.data)
           })

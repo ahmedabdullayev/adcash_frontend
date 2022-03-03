@@ -8,7 +8,7 @@ export default {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'get',
-                url: 'http://localhost:8000/api/post/' + id
+                url: '/post/' + id
             })
                 .then((response: AxiosResponse) => {
                     console.log(response.data)
@@ -21,7 +21,7 @@ export default {
         return new Promise<Posts[]>((resolve, reject) => {
             axios({
                 method: 'get',
-                url: 'http://127.0.0.1:8000/api/posts/' + categoryId
+                url: '/posts/' + categoryId
             })
                 .then((response: AxiosResponse) => {
                     commit('setPost', response.data)

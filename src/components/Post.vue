@@ -78,7 +78,7 @@ export default defineComponent({
     },
     submitForm(){
       console.warn(this.form)
-      axios.put('http://127.0.0.1:8000/api/post', this.form)
+      axios.put('/post', this.form)
           .then((res) =>{
             console.warn(res.data)
           })

@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import AddPosts from '../views/AddPosts.vue'
 import PostPage from '../views/PostPage.vue'
 import PostsPage from '../views/PostsPage.vue'
+import AddCategory from '../views/AddCategory.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -18,6 +19,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/post/:id',
     name: 'posts',
     component: PostPage
+  },
+  {
+    path: '/category/add',
+    name: 'addcategory',
+    component: AddCategory
   },
   {
     path: '/posts/:category/:id',
