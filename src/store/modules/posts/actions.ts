@@ -28,5 +28,17 @@ export default {
                     return resolve(<Posts[]> response.data)
                 })
         })
+    },
+    DELETE_POST({commit} : {commit: Commit}, id: number) {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'delete',
+                url: '/post/' + id
+            })
+                .then((response: AxiosResponse) => {
+                    commit('deletePost', id)
+                    return resolve(response.data)
+                })
+        })
     }
 }

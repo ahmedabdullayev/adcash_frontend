@@ -12,7 +12,8 @@
       <div v-if="errorArray.length">
         <div class="error-msg">
           <i class="fa fa-times-circle"></i>
-          Error! Max length is 15 and min length is 1!
+          Error! Max length is 15 and min length is 1 <br> and category can contain only
+          letters, numbers, and underscores and no spaces!!
         </div>
       </div>
       <input type="submit" value="Submit">

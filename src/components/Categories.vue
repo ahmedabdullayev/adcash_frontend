@@ -1,5 +1,6 @@
 <template>
 <div class="wrapper">
+  <LoaderComponent v-if="this.init === false"></LoaderComponent>
   <div class="a" v-for="category in allCategories" :key="category.id" >
     <h2>{{ category.name }}</h2>
     <router-link class="rout" :to="`/posts/${category.name}/${category.id}`">{{ category.name }}</router-link> |
@@ -12,12 +13,13 @@
 import {defineComponent} from "vue";
 import {mapActions, mapGetters} from "vuex";
 import axios from "axios";
-
+import LoaderComponent from "@/components/LoaderComponent.vue";
 export default defineComponent({
   name: "Categories",
+  components: {LoaderComponent},
   data(){
     return{
-
+      init: true as boolean
     }
   },
   computed: {
@@ -31,7 +33,9 @@ export default defineComponent({
         'DELETE_CATEGORY'
     ]),
     async deleteCategory(id: number){
-     await this.DELETE_CATEGORY(id)
+      this.init = false;
+      await this.DELETE_CATEGORY(id)
+      this.init = true;
     }
   },
   async mounted(){

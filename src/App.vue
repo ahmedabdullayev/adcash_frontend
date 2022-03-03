@@ -2,8 +2,7 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/post/add">Add post</router-link> |
-    <router-link to="/category/add">Add Category</router-link> |
-    <router-link to="/post/1">Post</router-link>
+    <router-link to="/category/add">Add Category</router-link>
   </div>
   <router-view/>
 </template>
