@@ -3,11 +3,12 @@
   <SmallLoader v-if="this.smallLoader === true"></SmallLoader>
   <LoaderComponent v-if="bigLoader === true"></LoaderComponent>
   <template v-if="bigLoader === false">
-  <template v-if="!post || !post.length">
+  <template v-if="!filteredPost('') || !filteredPost('').length">
     <h1>No posts for this category</h1>
   </template>
   <template v-else>
-    <div class="archive" v-for="pos in post" :key="pos.id">
+    <input type="text" id="post" name="post" placeholder="Find posts by their content(text).." v-on:keyup="filterPosts()" v-model="search">
+    <div class="archive" v-for="pos in posts" :key="pos.id">
       <article class="article"><h2>Post #{{pos.id}}</h2>
         <p>{{pos.content}}</p>
         <router-link class="button-delete" :to="`/post/${pos.id}`">Edit</router-link>
@@ -26,18 +27,21 @@ import {defineComponent} from "vue";
 import {mapActions, mapGetters} from "vuex";
 import LoaderComponent from "@/components/LoaderComponent.vue";
 import SmallLoader from "@/components/SmallLoader.vue";
+import Posts from "@/types/Posts";
 export default defineComponent({
   name: "PostsByCategories",
   components: {LoaderComponent, SmallLoader},
   data(){
     return{
+      posts: [] as Posts[],
+      search: "" as string,
       bigLoader: false as boolean,
       smallLoader: false as boolean,
     }
   },
   computed: {
     ...mapGetters('posts',[
-        'post'
+        'filteredPost'
     ])
   },
   methods: {
@@ -48,16 +52,22 @@ export default defineComponent({
     async getPosts(){
       this.bigLoader = true;
       await this.FETCH_POSTS_BY_CATEGORIES(Number.parseInt(String(this.$route.params.id))).then(()=>{
+        this.posts = this.filteredPost('');
         this.bigLoader = false;
       }).catch((err) =>{
         this.bigLoader = false;
         console.log(err)
       })
     },
+    filterPosts(){
+      this.posts = this.filteredPost(this.search)
+    },
 
     async deletePost(id: number){
       this.smallLoader = true;
       await this.DELETE_POST(id);
+      this.posts = this.filteredPost('');
+      this.search = "";
       this.smallLoader = false;
     }
   },
@@ -149,7 +159,15 @@ hr.image { /*dummy content*/
   background-color: @mainColor;
   color: @whiteColor;
 }
-
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 .button-edit {
   background-color: @whiteColor; /* Green */
   border: none;
