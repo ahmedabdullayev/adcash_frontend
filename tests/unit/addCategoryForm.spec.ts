@@ -17,11 +17,23 @@ const  wrapper = shallowMount(AddCategoryForm,{
 })
 
 describe('Category form', () => {
-    test('Show error wrong data', async () => {
-        await router.push('/category/add')
+    test("Check for html elements", async ()=> {
+        await router.push('/')
+        await router.isReady()
+
+        expect(wrapper.find(".add_form").exists()).toBe(true)
+        expect(wrapper.find("#category_name").exists()).toBe(true)
+    })
+    test('Show error when wrong data', async () => {
+        await router.push('/')
         await router.isReady()
         await wrapper.setData({form: {name: ""}})
-        await wrapper.find("button").trigger("click")
+        const wrapperFind = wrapper.find("#btn-submit")
+        const spy = jest.spyOn(wrapper.vm, 'submitForm')
+        wrapperFind.trigger('click')
+        await wrapper.vm.$nextTick()
+        expect(spy).toHaveBeenCalled()
         expect((wrapper.vm.errorArray as []).length > 0).toBe(false)
+        jest.restoreAllMocks()
     })
 })

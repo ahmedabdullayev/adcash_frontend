@@ -1,9 +1,8 @@
 <template>
 
   <div class="add_form">
-    <h1>Edit post #{{this.$route.params.id}}</h1>
+    <h1>Edit post #{{this.$route.params?.id}}</h1>
     <LoaderComponent v-if="this.init === false"></LoaderComponent>
-<div v-if="this.init">
   <form v-on:submit.prevent="submitForm">
   <Multiselect
       class="my_multiselect"
@@ -32,7 +31,6 @@
   <input type="submit" value="Submit">
   </form>
 </div>
-</div>
 
 </template>
 
@@ -47,7 +45,7 @@ import Categories from "@/types/Categories";
 import LoaderComponent from "@/components/LoaderComponent.vue";
 import SmallLoader from "@/components/SmallLoader.vue";
 export default defineComponent({
-  name: "Post",
+  name: "EditPostForm",
   components: {Multiselect, LoaderComponent, SmallLoader},
   data(){
     return{
@@ -80,22 +78,22 @@ export default defineComponent({
       'FETCH_CATEGORIES',
     ]),
     async getPost(){
-      await this.FETCH_POST(Number.parseInt(String(this.$route.params.id))).then( async () =>{
+      await this.FETCH_POST(Number.parseInt(String(this.$route.params?.id))).then( async () =>{
         this.editObj()
         this.init = true
       })
     },
     editObj(){
-      this.options = this.allCategories.map((item: Categories) => {
+      this.options = this.allCategories?.map((item: Categories) => {
         return {
-          value: item.id,
+          value: item?.id,
           label: item.name
         }
-      })
-     this.post.categories.forEach((item : Categories) => {
-       this.form.category_ids.push(item.id);
+      });
+     this.post?.categories.forEach((item : Categories) => {
+       this.form.category_ids.push(item?.id);
      });
-    this.form.content = this.post.content;
+    this.form.content = this.post?.content;
     },
     submitForm(){
       this.loader = true;
@@ -112,19 +110,20 @@ export default defineComponent({
             this.success = false;
             console.warn(error.message)
             console.log(error.message)
-          })
+          });
     },
   },
   async mounted(){
-    this.form.id = Number.parseInt(String(this.$route.params.id));
+    this.form.id = Number.parseInt(String(this.$route.params?.id));
     await this.FETCH_CATEGORIES();
     await this.getPost()
 
   }
-})
+});
 </script>
 
 <style lang="less" scoped>
+
 @green: #270;
 @error: #FFBABA;
 .add_form{

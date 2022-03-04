@@ -1,6 +1,5 @@
 import Posts from "@/types/Posts";
 import PostState from "@/types/PostState";
-import CategoryState from "@/types/CategoryState";
 import _ from "lodash";
 
 export default {

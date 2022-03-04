@@ -19,11 +19,8 @@ describe('Categories', () => {
   test('Get categories', async () => {
     await router.push('/')
     await router.isReady()
-
     const body = [{id: 1, name: "Cars"}]
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    wrapper.vm.$store.commit('categories/setAllCategories', body) // it works, but shows error on $store in my ide.
+    wrapper.vm.$store.commit('categories/setAllCategories', body)
     await wrapper.vm.$nextTick()
     expect(wrapper.vm.allCategories).toStrictEqual(body)
     expect(wrapper.text()).toMatch("Cars")

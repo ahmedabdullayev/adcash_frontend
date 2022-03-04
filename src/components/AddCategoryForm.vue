@@ -2,7 +2,7 @@
   <h1>Add a category</h1>
   <div class="add_form">
       <SmallLoader v-if="this.loader === true"></SmallLoader>
-      <input v-on:keydown="removeSuccessMsg" type="text" id="fname" name="firstname" placeholder="Category name.." v-model="form.name">
+      <input v-on:keydown="removeSuccessMsg" type="text" id="category_name" name="category_name" placeholder="Category name.." v-model="form.name">
       <div v-if="success">
         <div class="success-msg">
           <i class="fa fa-check"></i>
@@ -16,7 +16,7 @@
           letters, numbers, and underscores and no spaces!!
         </div>
       </div>
-      <button type="submit" v-on:click="submitForm"> Submit </button>
+      <button type="submit" id="btn-submit" v-on:click="submitForm()"> Submit </button>
   </div>
 </template>
 
