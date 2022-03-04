@@ -1,8 +1,8 @@
 <template>
   <h1>Add a category</h1>
   <div class="add_form">
-    <form v-on:submit.prevent="submitForm">
-      <input type="text" id="fname" name="firstname" placeholder="Category name.." v-model="form.name">
+      <SmallLoader v-if="this.loader === true"></SmallLoader>
+      <input v-on:keydown="removeSuccessMsg" type="text" id="fname" name="firstname" placeholder="Category name.." v-model="form.name">
       <div v-if="success">
         <div class="success-msg">
           <i class="fa fa-check"></i>
@@ -16,19 +16,21 @@
           letters, numbers, and underscores and no spaces!!
         </div>
       </div>
-      <input type="submit" value="Submit">
-    </form>
+      <button type="submit" v-on:click="submitForm"> Submit </button>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue";
 import Categories from "../types/Categories";
+import SmallLoader from "@/components/SmallLoader.vue";
 import axios from "axios";
 export default defineComponent({
   name: "AddCategoryForm",
+  components: {SmallLoader},
   data(){
     return{
+      loader: false as boolean,
       errorArray: [] as string[],
       success: false as boolean,
       form: {} as Categories
@@ -36,18 +38,24 @@ export default defineComponent({
   },
   methods: {
     submitForm(){
+      this.loader = true;
       axios.post('/category', this.form)
           .then(async (res) => {
             this.errorArray = []
+            this.loader = false;
             this.success = true
             console.warn(res)
           })
           .catch((error) =>{
-            this.errorArray.push(error);
+            this.errorArray.push("error");
             this.success = false;
+            this.loader = false;
             console.warn(error)
           })
     },
+    removeSuccessMsg(){
+      this.success = false;
+    }
   }
 })
 </script>
@@ -89,7 +97,7 @@ input[type=text], select {
   display: inline-block;
   width: 50%;
 }
-input[type=submit] {
+button{
   width: 100%;
   background-color: #42b983;
   color: white;

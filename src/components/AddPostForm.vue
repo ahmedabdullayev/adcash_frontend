@@ -82,12 +82,11 @@ export default defineComponent({
             this.errorArray.push(error);
             this.loader = false;
             this.success = false;
-            console.log(error.data)
-            return Promise.reject(error)
+            console.warn(error.data)
           })
     },
-    editObj(){
-      this.options = this.allCategories.map((item: Categories) => {
+    async editObj(){
+      this.options = this.allCategories?.map((item: Categories) => {
         return {
           value: item.id,
           label: item.name
@@ -97,7 +96,7 @@ export default defineComponent({
   },
   async mounted(){
     await this.FETCH_CATEGORIES();
-    this.editObj()
+    await this.editObj()
     console.log(this.options)
   }
 })

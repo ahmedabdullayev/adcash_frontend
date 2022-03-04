@@ -1,7 +1,8 @@
 <template>
 <div class="page">
-  <LoaderComponent v-if="loaded === false"></LoaderComponent>
-  <template v-if="loaded === true">
+  <SmallLoader v-if="this.smallLoader === true"></SmallLoader>
+  <LoaderComponent v-if="bigLoader === true"></LoaderComponent>
+  <template v-if="bigLoader === false">
   <template v-if="!post || !post.length">
     <h1>No posts for this category</h1>
   </template>
@@ -24,12 +25,14 @@
 import {defineComponent} from "vue";
 import {mapActions, mapGetters} from "vuex";
 import LoaderComponent from "@/components/LoaderComponent.vue";
+import SmallLoader from "@/components/SmallLoader.vue";
 export default defineComponent({
   name: "PostsByCategories",
-  components: {LoaderComponent},
+  components: {LoaderComponent, SmallLoader},
   data(){
     return{
-      loaded: false as boolean
+      bigLoader: false as boolean,
+      smallLoader: false as boolean,
     }
   },
   computed: {
@@ -43,13 +46,19 @@ export default defineComponent({
         'DELETE_POST'
     ]),
     async getPosts(){
+      this.bigLoader = true;
       await this.FETCH_POSTS_BY_CATEGORIES(Number.parseInt(String(this.$route.params.id))).then(()=>{
-        this.loaded = true;
+        this.bigLoader = false;
+      }).catch((err) =>{
+        this.bigLoader = false;
+        console.log(err)
       })
     },
 
     async deletePost(id: number){
+      this.smallLoader = true;
       await this.DELETE_POST(id);
+      this.smallLoader = false;
     }
   },
 
