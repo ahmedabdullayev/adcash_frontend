@@ -80,7 +80,9 @@ export default defineComponent({
     async getPost(){
       await this.FETCH_POST(Number.parseInt(String(this.$route.params?.id))).then( async () =>{
         this.editObj()
-        this.init = true
+        setTimeout(()=>{
+          this.init = true;
+        }, 300);
       })
     },
     editObj(){
@@ -100,17 +102,13 @@ export default defineComponent({
       axios.put('/post/'+ this.form?.id, this.form)
           .then((res) =>{
             this.errorArray = []
-            setTimeout(()=>{
-              this.loader = false;
-            }, 300);
+            this.loader = false;
             this.success = true
             console.warn(res.data)
           })
           .catch((error) =>{
             this.errorArray.push(error);
-            setTimeout(()=>{
-              this.loader = false;
-            }, 300);
+            this.loader = false;
             this.success = false;
             console.warn(error.message)
           });
