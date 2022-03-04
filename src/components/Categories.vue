@@ -41,7 +41,9 @@ export default defineComponent({
     try {
       this.init = true;
       let fetch = await this.FETCH_CATEGORIES();
-      this.init = false;
+      setTimeout(()=>{
+        this.init = false;
+      }, 300);
       console.log(fetch)
     } catch (e){
       console.error("Request failed, please refresh page")

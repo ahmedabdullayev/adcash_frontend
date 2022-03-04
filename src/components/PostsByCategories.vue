@@ -53,9 +53,13 @@ export default defineComponent({
       this.bigLoader = true;
       await this.FETCH_POSTS_BY_CATEGORIES(Number.parseInt(String(this.$route.params.id))).then(()=>{
         this.posts = this.filteredPost('');
-        this.bigLoader = false;
+        setTimeout(()=>{
+          this.bigLoader = false;
+        }, 300);
       }).catch((err) =>{
-        this.bigLoader = false;
+        setTimeout(()=>{
+          this.bigLoader = false;
+        }, 300);
         console.log(err)
       })
     },

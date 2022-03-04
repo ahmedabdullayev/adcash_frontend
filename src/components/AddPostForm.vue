@@ -74,13 +74,17 @@ export default defineComponent({
       axios.post('/posts', this.form)
           .then((res) =>{
             this.errorArray = []
-            this.loader = false;
+            setTimeout(()=>{
+              this.loader = false;
+            }, 300);
             this.success = true
             console.warn(res.data)
           })
           .catch((error) =>{
             this.errorArray.push(error);
-            this.loader = false;
+            setTimeout(()=>{
+              this.loader = false;
+            }, 300);
             this.success = false;
             console.warn(error.data)
           })
