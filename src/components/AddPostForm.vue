@@ -1,12 +1,7 @@
 <template>
   <div class="add_form">
+    <h1>Add post</h1>
   <form v-on:submit.prevent="submitForm">
-<!--    <select v-model="form.category_ids" name="cars" id="cars" multiple>-->
-<!--      <option value="1">Volvo</option>-->
-<!--      <option value="2">Saab</option>-->
-<!--      <option value="opel">Opel</option>-->
-<!--      <option value="audi">Audi</option>-->
-<!--    </select>-->
     <Multiselect
         class="my_multiselect"
         v-model="form.category_ids"
@@ -76,16 +71,16 @@ export default defineComponent({
             this.errorArray = []
             setTimeout(()=>{
               this.loader = false;
+              this.success = true
             }, 300);
-            this.success = true
             console.warn(res.data)
           })
           .catch((error) =>{
             this.errorArray.push(error);
             setTimeout(()=>{
               this.loader = false;
+              this.success = false;
             }, 300);
-            this.success = false;
             console.warn(error.data)
           })
     },

@@ -1,5 +1,5 @@
 <template>
-  <h1>Add a category</h1>
+  <h1>Add category</h1>
   <div class="add_form">
       <SmallLoader v-if="this.loader === true"></SmallLoader>
       <input v-on:keydown="removeSuccessMsg" type="text" id="category_name" name="category_name" placeholder="Category name.." v-model="form.name">
@@ -44,15 +44,15 @@ export default defineComponent({
             this.errorArray = []
             setTimeout(()=>{
               this.loader = false;
+              this.success = true
             }, 300);
-            this.success = true
             console.warn(res)
           })
           .catch((error) =>{
             this.errorArray.push("error");
-            this.success = false;
             setTimeout(()=>{
               this.loader = false;
+              this.success = false;
             }, 300);
             console.warn(error)
           })

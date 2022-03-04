@@ -2,7 +2,6 @@ import { shallowMount } from '@vue/test-utils'
 import store from '@/store'
 import AddCategoryForm from "@/components/AddCategoryForm.vue";
 import router from "@/router";
-import Categories from "@/types/Categories";
 
 store.dispatch = jest.fn(() => Promise.resolve())
 const  wrapper = shallowMount(AddCategoryForm,{
@@ -27,7 +26,7 @@ describe('Category form', () => {
     test('Show error when wrong data', async () => {
         await router.push('/')
         await router.isReady()
-        await wrapper.setData({form: {name: ""}})
+        await wrapper.setData({form: ""})
         const wrapperFind = wrapper.find("#btn-submit")
         const spy = jest.spyOn(wrapper.vm, 'submitForm')
         wrapperFind.trigger('click')
