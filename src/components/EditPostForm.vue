@@ -97,7 +97,7 @@ export default defineComponent({
     },
     submitForm(){
       this.loader = true;
-      axios.put('/post', this.form)
+      axios.put('/post/'+ this.form?.id, this.form)
           .then((res) =>{
             this.errorArray = []
             this.loader = false;
@@ -109,7 +109,6 @@ export default defineComponent({
             this.loader = false;
             this.success = false;
             console.warn(error.message)
-            console.log(error.message)
           });
     },
   },
