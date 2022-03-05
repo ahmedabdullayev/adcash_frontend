@@ -11,7 +11,7 @@
         :createTag="true"
         :options="this.options"
     />
-    <textarea v-model="form.content" cols="30" rows="10" placeholder="Write something.."></textarea>
+    <textarea v-on:keydown="removeSuccessMsg()" v-model="form.content" cols="30" rows="10" placeholder="Write something.."></textarea>
     <SmallLoader v-if="this.loader === true"></SmallLoader>
     <div v-if="success">
       <div class="success-msg">
@@ -91,6 +91,9 @@ export default defineComponent({
           label: item.name
         }
       })
+    },
+    removeSuccessMsg(){
+      this.success = false;
     }
   },
   async mounted(){
@@ -103,7 +106,8 @@ export default defineComponent({
 <style src="@vueform/multiselect/themes/default.css"></style>
 
 <style lang="less" scoped>
-@green: #270;
+@greenBright: #DFF2BF;
+@green: #4F8A10;
 @error: #FFBABA;
 .my_multiselect{
   width: 100%;
@@ -132,9 +136,9 @@ textarea {
 }
 .success-msg{
   margin-top: 5px;
-  background-color: @green;
-  color: white;
-  border: 2px solid @green;
+  background-color: @greenBright;
+  color: @green;
+  border: 2px solid @greenBright;
   padding: 5px;
   border-radius: 25px;
 }
