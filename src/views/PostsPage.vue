@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import PostsByCategories from "../components/PostsByCategories";
+import PostsByCategories from "../components/PostsByCategories.vue";
 export default defineComponent({
   name: "PostsPage",
   components: {PostsByCategories}

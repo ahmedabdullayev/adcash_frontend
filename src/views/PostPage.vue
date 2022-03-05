@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import Post from "../components/EditPostForm";
+import Post from "../components/EditPostForm.vue";
 
 export default defineComponent({
   name: "PostPage",
