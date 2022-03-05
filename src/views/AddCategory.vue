@@ -2,7 +2,7 @@
 <AddCategoryForm></AddCategoryForm>
 </template>
 
-<script>
+<script lang="ts">
 import {defineComponent} from "vue";
 import AddCategoryForm from "../components/AddCategoryForm";
 export default defineComponent({
