@@ -4,7 +4,7 @@
   <div class="a" v-for="category in allCategories" :key="category.id" >
     <h2>{{ category.name }}</h2>
     <router-link class="rout" :to="`/posts/${category.name}/${category.id}`">{{ category.name }}</router-link> |
-    <a v-on:click="deleteCategory(category.id)" class="rout">Delete</a>
+    <a v-on:click="deleteCategory(category.id)" class="rout delete-btn">Delete</a>
   </div>
 </div>
 </template>
@@ -70,60 +70,60 @@ export default defineComponent({
     grid-gap: 5px;
   }
 }
-  @media @desktop {
-    .wrapper {
-      padding: 0 calc(30% - 270px);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: minmax(50px, auto);
-      grid-gap: 5px;
-    }
+@media @desktop {
+  .wrapper {
+    padding: 0 calc(30% - 270px);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+    grid-gap: 5px;
   }
-    @media @desktopMedium {
-      .wrapper {
-        padding: 0 calc(40% - 270px);
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-auto-rows: minmax(50px, auto);
-        grid-gap: 5px;
-      }
-    }
-      @media @desktopSmall {
-        .wrapper {
-          padding: 0 calc(70% - 330px);
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          grid-auto-rows: minmax(50px, auto);
-          grid-gap: 5px;
-        }
-      }
+}
+@media @desktopMedium {
+  .wrapper {
+    padding: 0 calc(40% - 270px);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+    grid-gap: 5px;
+  }
+}
+@media @desktopSmall {
+  .wrapper {
+    padding: 0 calc(70% - 330px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+    grid-gap: 5px;
+  }
+}
 
-        .a {
-          margin: 0 3px;
-          color: #1195c9;
-          border: 3px solid @borderColor;
-          background: white;
-          padding-bottom: 10px;
-          border-radius: 4px;
-          cursor: pointer;
-          font-weight: bold;
-        }
-        .rout {
-          border: 5px solid @borderColor;
-          background-color: #42b983;
-          border-radius: 4px;
-          color: white;
+.a {
+  margin: 0 3px;
+  color: #1195c9;
+  border: 3px solid @borderColor;
+  background: white;
+  padding-bottom: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.rout {
+  border: 5px solid @borderColor;
+  background-color: #42b983;
+  border-radius: 4px;
+  color: white;
+  position: relative;
+  text-decoration: none;
+}
+.delete-btn{
+  cursor: pointer;
+}
+.rout:hover {
+  background-color: #227700;
+}
 
-          position: relative;
-          text-decoration: none;
-        }
-
-        .rout:hover {
-          background-color: #227700;
-        }
-
-        .rout:active {
-          box-shadow: none;
-          top: 5px;
-        }
+.rout:active {
+  box-shadow: none;
+  top: 5px;
+}
 </style>
