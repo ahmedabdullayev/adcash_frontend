@@ -1,34 +1,34 @@
 <template>
 
   <div class="add_form">
-    <h1>Edit post #{{this.$route.params?.id}}</h1>
+    <h1>{{$t('editPost')}} #{{this.$route.params?.id}}</h1>
     <LoaderComponent v-if="this.init === false"></LoaderComponent>
   <form v-on:submit.prevent="submitForm">
   <Multiselect
       class="my_multiselect"
       v-model="form.category_ids"
       :values="this.values"
-      placeholder="Select one or more categories"
+      v-bind:placeholder="$t('select_categories')"
       mode="tags"
       :searchable="true"
       :createTag="true"
       :options="this.options"
   />
-  <textarea v-model="form.content" cols="30" rows="10" placeholder="Write something.."></textarea>
+  <textarea v-model="form.content" cols="30" rows="10" v-bind:placeholder="$t('write_smth')"></textarea>
     <SmallLoader v-if="this.loader === true"></SmallLoader>
     <div v-if="success">
       <div class="success-msg">
         <i class="fa fa-check"></i>
-        Post was successfully updated!
+        {{ $t('postUpdate') }}
       </div>
     </div>
     <div v-if="errorArray.length">
       <div class="error-msg">
         <i class="fa fa-times-circle"></i>
-        Error! Post max length is 140 characters and min length is 1 character!<br> And please choose category for this post!
+        {{ $t('errorPost') }}
       </div>
     </div>
-  <input type="submit" value="Submit">
+  <input type="submit" v-bind:value="$t('submit')">
   </form>
 </div>
 
@@ -125,12 +125,14 @@ export default defineComponent({
 
 <style lang="less" scoped>
 
-@green: #270;
+@greenBright: #DFF2BF;
+@green: #4F8A10;
 @error: #FFBABA;
 .add_form{
   display: inline-block;
   width: 50%;
 }
+
 textarea {
   margin-top: 20px;
   height: 150px;
@@ -165,9 +167,9 @@ input[type=submit] {
 }
 .success-msg{
   margin-top: 5px;
-  background-color: @green;
-  color: white;
-  border: 2px solid @green;
+  background-color: @greenBright;
+  color: @green;
+  border: 2px solid @greenBright;
   padding: 5px;
   border-radius: 25px;
 }

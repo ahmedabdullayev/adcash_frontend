@@ -1,0 +1,20 @@
+{
+  "submit": "Esita",
+  "category_placeholder": "Kategooria nimi...",
+  "add_category" : "Lisa kategooria",
+  "delete": "Kustuta",
+  "categories": "Kategooriad",
+  "home": "Kodu",
+  "addPost": "Lisa postitus",
+  "searchPost": "Otsi postitusi nende sisu (teksti) järgi...",
+  "post": "Postitus",
+  "edit": "Muuda",
+  "select_categories": "Valige üks või mitu kategooriat",
+  "write_smth": "Kirjuta midagi..",
+  "editPost" : "Muuda postitusi",
+  "no_posts": "Selles kategoorias pole postitusi",
+  "category": "Kategooria",
+  "postAdd" : "Postituse lisamine õnnestus!",
+  "postUpdate" : "Postitus on edukalt uendatud!",
+  "errorPost": "Viga! Postituse maksimaalne pikkus on 140 tähemärki ja minimaalne pikkus on 1 märk! Ja palun valige selle postituse jaoks kategooria!"
+}

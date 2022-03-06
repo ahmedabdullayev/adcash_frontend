@@ -1,0 +1,20 @@
+{
+  "submit": "Submit",
+  "category_placeholder": "Category name...",
+  "add_category" : "Add category",
+  "delete": "Delete",
+  "categories": "Categories",
+  "home": "Home",
+  "addPost": "Add post",
+  "searchPost": "Search posts by their content(text)...",
+  "post": "Post",
+  "edit": "Edit",
+  "select_categories": "Select one or more categories",
+  "write_smth": "Write something..",
+  "editPost" : "Edit post",
+  "no_posts": "No posts for this category",
+  "category": "Category",
+  "postAdd": "Post was successfully added!",
+  "postUpdate": "Post was successfully updated!",
+  "errorPost": "Error! Post max length is 140 characters and min length is 1 character! And please choose category for this post!"
+}

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1>Category: {{ $route.params.category }}</h1>
+  <h1>{{ $t('category') }}: {{ $route.params.category }}</h1>
   <PostsByCategories></PostsByCategories>
 </div>
 </template>

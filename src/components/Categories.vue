@@ -4,7 +4,7 @@
   <div class="a" v-for="category in allCategories" :key="category.id" >
     <h2>{{ category.name }}</h2>
     <router-link class="rout" :to="`/posts/${category.name}/${category.id}`">{{ category.name }}</router-link> |
-    <a v-on:click="deleteCategory(category.id)" class="rout delete-btn">Delete</a>
+    <a v-on:click="deleteCategory(category.id)" class="rout delete-btn">{{$t('delete')}}</a>
   </div>
 </div>
 </template>

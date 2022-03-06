@@ -1,24 +1,37 @@
 <template>
-  <h1>Add category</h1>
+  <h1>{{ $t('add_category') }}</h1>
   <div class="add_form">
       <SmallLoader v-if="this.loader === true"></SmallLoader>
-      <input v-on:keydown="removeSuccessMsg" type="text" id="category_name" name="category_name" placeholder="Category name.." v-model="form.name">
+      <input v-on:keydown="removeSuccessMsg" type="text" id="category_name" name="category_name" v-bind:placeholder="$t('category_placeholder')" v-model="form.name">
       <div v-if="success">
         <div class="success-msg">
           <i class="fa fa-check"></i>
-          Category {{form.name}} was successfully added!
+          {{ $t('categoryAdd', {name : form.name}) }}
         </div>
       </div>
       <div v-if="errorArray.length">
         <div class="error-msg">
           <i class="fa fa-times-circle"></i>
-          Error! Max length is 15 and min length is 1 <br> and category can contain only
-          letters, numbers, and underscores and no spaces!!
+          {{ $t('errorCategory') }}
         </div>
       </div>
-      <button type="submit" id="btn-submit" v-on:click="submitForm()"> Submit </button>
+      <button type="submit" id="btn-submit" v-on:click="submitForm()"> {{ $t('submit') }} </button>
   </div>
 </template>
+
+<i18n>
+{
+  "en": {
+    "categoryAdd": "Category {name} was successfully added!",
+    "errorCategory": "Error! Max length is 15 and min length is 1 and category can contain only letters, numbers, and underscores and no spaces!"
+  },
+  "et": {
+    "categoryAdd" : "Postituse {name} lisamine õnnestus!",
+    "errorCategory": "Viga! Maksimaalne pikkus on 15 ja minimaalne pikkus on 1 ning kategooria võib sisaldada ainult tähti, numbreid ja allkriipse, ilma tühikuteta!"
+  }
+}
+</i18n>
+
 
 <script lang="ts">
 import {defineComponent} from "vue";
@@ -116,3 +129,4 @@ input[type=submit]:hover {
   background-color: #45a049;
 }
 </style>
+

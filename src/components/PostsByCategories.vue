@@ -4,15 +4,15 @@
   <LoaderComponent v-if="bigLoader === true"></LoaderComponent>
   <template v-if="bigLoader === false">
   <template v-if="!filteredPost('') || !filteredPost('').length">
-    <h1>No posts for this category</h1>
+    <h1>{{ $t('no_posts') }}</h1>
   </template>
   <template v-else>
-    <input type="text" id="post" name="post" placeholder="Find posts by their content(text).." v-on:keyup="filterPosts()" v-model="search">
+    <input type="text" id="post" name="post" v-bind:placeholder="$t('searchPost')" v-on:keyup="filterPosts()" v-model="search">
     <div class="archive" v-for="pos in posts" :key="pos.id">
       <article class="article"><h2>Post #{{pos.id}}</h2>
         <p>{{pos.content}}</p>
-        <router-link class="button-delete" :to="`/post/${pos.id}`">Edit</router-link>
-        <button class="button-edit" v-on:click="deletePost(pos.id)">Delete</button>
+        <router-link class="button-delete" :to="`/post/${pos.id}`">{{ $t('edit') }}</router-link>
+        <button class="button-edit" v-on:click="deletePost(pos.id)">{{ $t('delete') }}</button>
         <hr>
         <hr>
       </article>
@@ -93,7 +93,7 @@ export default defineComponent({
 hr { /*dummy content*/
   height: 6px;
   border: none;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 hr:last-child {  /*dummy content*/

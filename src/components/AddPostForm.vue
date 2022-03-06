@@ -1,31 +1,31 @@
 <template>
   <div class="add_form">
-    <h1>Add post</h1>
+    <h1>{{ $t('addPost') }}</h1>
   <form v-on:submit.prevent="submitForm">
     <Multiselect
         class="my_multiselect"
         v-model="form.category_ids"
-        placeholder="Select one or more categories"
+        v-bind:placeholder="$t('select_categories')"
         mode="tags"
         :searchable="true"
         :createTag="true"
         :options="this.options"
     />
-    <textarea v-on:keydown="removeSuccessMsg()" v-model="form.content" cols="30" rows="10" placeholder="Write something.."></textarea>
+    <textarea v-on:keydown="removeSuccessMsg()" v-model="form.content" cols="30" rows="10" v-bind:placeholder="$t('write_smth')"></textarea>
     <SmallLoader v-if="this.loader === true"></SmallLoader>
     <div v-if="success">
       <div class="success-msg">
         <i class="fa fa-check"></i>
-        Post was successfully added!
+        {{ $t('postAdd') }}
       </div>
     </div>
     <div v-if="errorArray.length">
       <div class="error-msg">
         <i class="fa fa-times-circle"></i>
-        Error! Post max length is 140 characters and min length is 1 character! <br> And please choose category for this post!
+        {{ $t('errorPost') }}
       </div>
     </div>
-    <input type="submit" value="Submit">
+    <input type="submit" v-bind:value="$t('submit')">
   </form>
 </div>
 </template>
@@ -58,7 +58,8 @@ export default defineComponent({
   computed: {
     ...mapGetters('categories', [
       'allCategories'
-    ])
+    ]),
+
   },
   methods:{
     ...mapActions('categories',[
