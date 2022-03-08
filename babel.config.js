@@ -1,5 +1,10 @@
 module.exports = {
   presets: [
-    "@babel/preset-env"
-  ]
+    "@babel/preset-env",
+  ],
+  env: {
+    test: {
+      plugins: ["transform-require-context"],
+    },
+  },
 }
