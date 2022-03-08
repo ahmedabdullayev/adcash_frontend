@@ -51,6 +51,10 @@ export default defineComponent({
   },
   methods: {
     submitForm(){
+      if(this.form?.name == undefined){
+        this.errorArray.push("error");
+        return //to prevent sending request to api
+      }
       this.loader = true;
       axios.post('/category', this.form)
           .then(async (res) => {
