@@ -79,24 +79,7 @@ export default defineComponent({
 
 <style lang="less" scoped>
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
-
-@green: #270;
-.success-msg,
-.error-msg{
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 3px 3px 3px 3px;
-  color: @green;
-  background-color: #DFF2BF;
-}
-.error-msg {
-  color: #D8000C;
-  background-color: #FFBABA;
-}
-.success-msg {
-  color: @green;
-  background-color: #DFF2BF;
-}
+@import "../less-styles/validation-styles";
 @color: white;
 body {
   background-color: @color;

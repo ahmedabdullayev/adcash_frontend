@@ -107,9 +107,7 @@ export default defineComponent({
 <style src="@vueform/multiselect/themes/default.css"></style>
 
 <style lang="less" scoped>
-@greenBright: #DFF2BF;
-@green: #4F8A10;
-@error: #FFBABA;
+@import "../less-styles/validation-styles";
 .my_multiselect{
   width: 100%;
 }
@@ -128,21 +126,7 @@ textarea {
   -moz-box-shadow: 0 0 5px #444;
   box-shadow: 0 0 5px #444;
 }
-.error-msg{
-  margin-top: 5px;
-  background-color: @error;
-  border: 2px solid red;
-  padding: 5px;
-  border-radius: 25px;
-}
-.success-msg{
-  margin-top: 5px;
-  background-color: @greenBright;
-  color: @green;
-  border: 2px solid @greenBright;
-  padding: 5px;
-  border-radius: 25px;
-}
+
 .add_form{
   display: inline-block;
   width: 50%;

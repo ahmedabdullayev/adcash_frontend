@@ -124,10 +124,8 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
+@import "../less-styles/validation-styles";
 
-@greenBright: #DFF2BF;
-@green: #4F8A10;
-@error: #FFBABA;
 .add_form{
   display: inline-block;
   width: 50%;
@@ -158,19 +156,5 @@ input[type=submit] {
   border-radius: 4px;
   cursor: pointer;
 }
-.error-msg{
-  margin-top: 5px;
-  background-color: @error;
-  border: 2px solid red;
-  padding: 5px;
-  border-radius: 25px;
-}
-.success-msg{
-  margin-top: 5px;
-  background-color: @greenBright;
-  color: @green;
-  border: 2px solid @greenBright;
-  padding: 5px;
-  border-radius: 25px;
-}
+
 </style>
