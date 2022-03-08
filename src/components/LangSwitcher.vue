@@ -9,7 +9,7 @@
 import {defineComponent} from "vue";
 
 export default defineComponent({
-  name: "Header",
+  name: "LangSwitcher",
   data(){
     const lang = localStorage.getItem("lang") || "en";
     return {
@@ -27,10 +27,10 @@ export default defineComponent({
 
 <style lang="less" scoped>
 
-@glass: black;
-@glass-icon: black;
+@glass: #4CAF50;
+@glass-icon: #4CAF50;
 @gradient: linear-gradient(35deg, red, purple);
-@option: #320a28;
+@option: #42b983;
 
 
 

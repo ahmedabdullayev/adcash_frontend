@@ -9,7 +9,7 @@
     <router-link to="/category/add">{{$t('add_category')}}</router-link>
       </div>
       <div class="col-sm-3 col-md-3 col-lg-2">
-    <Header></Header>
+    <LangSwitcher></LangSwitcher>
       </div>
     </div>
   </div>
@@ -19,9 +19,9 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import Header from "@/components/Header.vue";
+import LangSwitcher from "@/components/LangSwitcher.vue";
 export default defineComponent({
-  components: {Header},
+  components: {LangSwitcher},
   data(){
     return{
     }
