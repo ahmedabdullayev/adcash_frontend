@@ -35,7 +35,7 @@ export default defineComponent({
     }
   },
   watch:{
-    $route: function(to, from){
+    $route: function(){
       this.checkLang()
     }
   },

@@ -14,7 +14,9 @@ export default {
                     console.log(response.data)
                     commit('setPost', response.data)
                     return resolve(<Posts[]> response.data)
-                })
+                }).catch((err: Error)=>{
+                    reject(err)
+            })
         })
     },
     FETCH_POSTS_BY_CATEGORIES({commit}: {commit: Commit}, categoryId: number) : Promise<Posts[]>{
@@ -26,7 +28,9 @@ export default {
                 .then((response: AxiosResponse) => {
                     commit('setPost', response.data)
                     return resolve(<Posts[]> response.data)
-                })
+                }).catch((err: Error)=>{
+                reject(err)
+            })
         })
     },
     DELETE_POST({commit} : {commit: Commit}, id: number) {

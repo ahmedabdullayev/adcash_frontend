@@ -1,37 +1,40 @@
 <template>
-
-  <div class="add_form">
-    <h1>{{$t('editPost')}} #{{this.$route.params?.id}}</h1>
-    <LoaderComponent v-if="this.init === false"></LoaderComponent>
-  <form v-on:submit.prevent="submitForm">
-  <Multiselect
-      class="my_multiselect"
-      v-model="form.category_ids"
-      :values="this.values"
-      v-bind:placeholder="$t('select_categories')"
-      mode="tags"
-      :searchable="true"
-      :createTag="true"
-      :options="this.options"
-  />
-  <textarea v-model="form.content" cols="30" rows="10" v-bind:placeholder="$t('write_smth')"></textarea>
-    <SmallLoader v-if="this.loader === true"></SmallLoader>
-    <div v-if="success">
-      <div class="success-msg">
-        <i class="fa fa-check"></i>
-        {{ $t('postUpdate') }}
+  <template v-if="notFound === false">
+    <div class="add_form">
+      <h1>{{$t('editPost')}} #{{this.$route.params?.id}}</h1>
+      <LoaderComponent v-if="this.init === false"></LoaderComponent>
+    <form v-on:submit.prevent="submitForm">
+    <Multiselect
+        class="my_multiselect"
+        v-model="form.category_ids"
+        :values="this.values"
+        v-bind:placeholder="$t('select_categories')"
+        mode="tags"
+        :searchable="true"
+        :createTag="true"
+        :options="this.options"
+    />
+    <textarea v-model="form.content" cols="30" rows="10" v-bind:placeholder="$t('write_smth')"></textarea>
+      <SmallLoader v-if="this.loader === true"></SmallLoader>
+      <div v-if="success">
+        <div class="success-msg">
+          <i class="fa fa-check"></i>
+          {{ $t('postUpdate') }}
+        </div>
       </div>
-    </div>
-    <div v-if="errorArray.length">
-      <div class="error-msg">
-        <i class="fa fa-times-circle"></i>
-        {{ $t('errorPost') }}
+      <div v-if="errorArray.length">
+        <div class="error-msg">
+          <i class="fa fa-times-circle"></i>
+          {{ $t('errorPost') }}
+        </div>
       </div>
+    <input type="submit" v-bind:value="$t('submit')">
+    </form>
     </div>
-  <input type="submit" v-bind:value="$t('submit')">
-  </form>
-</div>
-
+  </template>
+  <template v-else>
+    <notfound v-bind:msg="$t('notFoundPost')"></notfound>
+  </template>
 </template>
 
 <script lang="ts">
@@ -44,9 +47,10 @@ import Options from "@/types/Options";
 import Categories from "@/types/Categories";
 import LoaderComponent from "@/components/LoaderComponent.vue";
 import SmallLoader from "@/components/SmallLoader.vue";
+import notfound from "@/components/notfound.vue";
 export default defineComponent({
   name: "EditPostForm",
-  components: {Multiselect, LoaderComponent, SmallLoader},
+  components: {Multiselect, LoaderComponent, SmallLoader, notfound},
   data(){
     return{
       init: false as boolean,
@@ -54,6 +58,7 @@ export default defineComponent({
       options: [] as Options[],
       posts: [] as Posts[],
       success: false as boolean,
+      notFound: false as boolean,
       errorArray: [] as string[],
       form:{
         category_ids: [] as number[],
@@ -83,6 +88,9 @@ export default defineComponent({
         setTimeout(()=>{
           this.init = true;
         }, 300);
+      }).catch(() => {
+        this.init = true;
+        this.notFound = true;
       })
     },
     editObj(){

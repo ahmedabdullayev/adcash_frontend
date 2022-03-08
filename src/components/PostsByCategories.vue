@@ -1,25 +1,30 @@
 <template>
-<div class="page">
-  <SmallLoader v-if="this.smallLoader === true"></SmallLoader>
-  <LoaderComponent v-if="bigLoader === true"></LoaderComponent>
-  <template v-if="bigLoader === false">
-  <template v-if="!filteredPost('') || !filteredPost('').length">
-    <h1>{{ $t('no_posts') }}</h1>
-  </template>
-  <template v-else>
-    <input type="text" id="post" name="post" v-bind:placeholder="$t('searchPost')" v-on:keyup="filterPosts()" v-model="search">
-    <div class="archive" v-for="pos in posts" :key="pos.id">
-      <article class="article"><h2>Post #{{pos.id}}</h2>
-        <p>{{pos.content}}</p>
-        <router-link class="button-delete" :to="`/post/${pos.id}`">{{ $t('edit') }}</router-link>
-        <button class="button-edit" v-on:click="deletePost(pos.id)">{{ $t('delete') }}</button>
-        <hr>
-        <hr>
-      </article>
+  <template v-if="notFound === false">
+    <div class="page">
+      <SmallLoader v-if="this.smallLoader === true"></SmallLoader>
+      <LoaderComponent v-if="bigLoader === true"></LoaderComponent>
+      <template v-if="bigLoader === false">
+      <template v-if="!filteredPost('') || !filteredPost('').length">
+        <h1>{{ $t('no_posts') }}</h1>
+      </template>
+      <template v-else>
+        <input type="text" id="post" name="post" v-bind:placeholder="$t('searchPost')" v-on:keyup="filterPosts()" v-model="search">
+        <div class="archive" v-for="pos in posts" :key="pos.id">
+          <article class="article"><h2>Post #{{pos.id}}</h2>
+            <p>{{pos.content}}</p>
+            <router-link class="button-delete" :to="`/post/${pos.id}`">{{ $t('edit') }}</router-link>
+            <button class="button-edit" v-on:click="deletePost(pos.id)">{{ $t('delete') }}</button>
+            <hr>
+            <hr>
+          </article>
+        </div>
+      </template>
+      </template>
     </div>
   </template>
+  <template v-else>
+    <notfound v-bind:msg="$t('notFoundCategory')"></notfound>
   </template>
-</div>
 </template>
 
 <script lang="ts">
@@ -28,13 +33,15 @@ import {mapActions, mapGetters} from "vuex";
 import LoaderComponent from "@/components/LoaderComponent.vue";
 import SmallLoader from "@/components/SmallLoader.vue";
 import Posts from "@/types/Posts";
+import notfound from "@/components/notfound.vue";
 export default defineComponent({
   name: "PostsByCategories",
-  components: {LoaderComponent, SmallLoader},
+  components: {LoaderComponent, SmallLoader, notfound},
   data(){
     return{
       posts: [] as Posts[],
       search: "" as string,
+      notFound: false as boolean,
       bigLoader: false as boolean,
       smallLoader: false as boolean,
     }
@@ -57,9 +64,7 @@ export default defineComponent({
           this.bigLoader = false;
         }, 300);
       }).catch((err) =>{
-        setTimeout(()=>{
-          this.bigLoader = false;
-        }, 300);
+        this.notFound = true;
         console.log(err)
       })
     },
