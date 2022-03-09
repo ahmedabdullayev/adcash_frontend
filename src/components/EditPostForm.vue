@@ -85,9 +85,9 @@ export default defineComponent({
     async getPost(){
       await this.FETCH_POST(Number.parseInt(String(this.$route.params?.id))).then( async () =>{
         this.editObj()
-        setTimeout(()=>{
+        setTimeout(()=>{// for smooth and nice loader
           this.init = true;
-        }, 300);
+        }, 200);
       }).catch(() => {
         this.init = true;
         this.notFound = true;

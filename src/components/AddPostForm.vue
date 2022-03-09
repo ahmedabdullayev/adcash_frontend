@@ -75,18 +75,18 @@ export default defineComponent({
       axios.post('/posts', this.form)
           .then((res) =>{
             this.errorArray = []
-            setTimeout(()=>{
+            setTimeout(()=>{// for smooth and nice loader
               this.loader = false;
               this.success = true
-            }, 300);
+            }, 200);
             console.warn(res.data)
           })
           .catch((error) =>{
             this.errorArray.push(error);
-            setTimeout(()=>{
+            setTimeout(()=>{// for smooth and nice loader
               this.loader = false;
               this.success = false;
-            }, 300);
+            }, 200);
             console.warn(error.data)
           })
     },

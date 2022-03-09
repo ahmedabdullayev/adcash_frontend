@@ -60,9 +60,9 @@ export default defineComponent({
       this.bigLoader = true;
       await this.FETCH_POSTS_BY_CATEGORIES(Number.parseInt(String(this.$route.params.id))).then(()=>{
         this.posts = this.filteredPost('');
-        setTimeout(()=>{
+        setTimeout(()=>{ // for smooth and nice loader
           this.bigLoader = false;
-        }, 300);
+        }, 200);
       }).catch((err) =>{
         this.notFound = true;
         console.log(err)

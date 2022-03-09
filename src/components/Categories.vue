@@ -40,11 +40,10 @@ export default defineComponent({
   async mounted(){
     try {
       this.init = true;
-      let fetch = await this.FETCH_CATEGORIES();
-      setTimeout(()=>{
+      await this.FETCH_CATEGORIES();
+      setTimeout(()=>{// for smooth and nice loader
         this.init = false;
-      }, 300);
-      console.log(fetch)
+      }, 200);
     } catch (e){
       console.error("Request failed, please refresh page")
       this.init = false;

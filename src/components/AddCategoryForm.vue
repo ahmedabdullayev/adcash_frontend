@@ -59,18 +59,18 @@ export default defineComponent({
       axios.post('/category', this.form)
           .then(async (res) => {
             this.errorArray = []
-            setTimeout(()=>{
+            setTimeout(()=>{// for smooth and nice loader
               this.loader = false;
               this.success = true
-            }, 300);
+            }, 200);
             console.warn(res)
           })
           .catch((error) =>{
             this.errorArray.push("error");
-            setTimeout(()=>{
+            setTimeout(()=>{// for smooth and nice loader
               this.loader = false;
               this.success = false;
-            }, 300);
+            }, 200);
             console.warn(error)
           })
     },
