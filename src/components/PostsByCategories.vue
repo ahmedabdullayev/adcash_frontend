@@ -133,8 +133,9 @@ hr.image { /*dummy content*/
     width: 40%;
   }
 }
-
-
+p{
+  word-wrap: break-word;
+}
 .archive {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
