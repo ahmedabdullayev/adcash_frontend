@@ -79,7 +79,6 @@ export default defineComponent({
               this.loader = false;
               this.success = true
             }, 200);
-            console.warn(res.data)
           })
           .catch((error) =>{
             this.errorArray.push(error);
@@ -105,7 +104,6 @@ export default defineComponent({
   async mounted(){
     await this.FETCH_CATEGORIES();
     await this.editObj()
-    console.log(this.options)
   }
 })
 </script>

@@ -19,20 +19,6 @@
   </div>
 </template>
 
-<i18n>
-{
-  "en": {
-    "categoryAdd": "Category {name} was successfully added!",
-    "errorCategory": "Error! Max length is 15 and min length is 1 and category can contain only letters, numbers, and underscores and no spaces!"
-  },
-  "et": {
-    "categoryAdd" : "Postituse {name} lisamine õnnestus!",
-    "errorCategory": "Viga! Maksimaalne pikkus on 15 ja minimaalne pikkus on 1 ning kategooria võib sisaldada ainult tähti, numbreid ja allkriipse, ilma tühikuteta!"
-  }
-}
-</i18n>
-
-
 <script lang="ts">
 import {defineComponent} from "vue";
 import Categories from "../types/Categories";
@@ -51,7 +37,7 @@ export default defineComponent({
   },
   methods: {
     submitForm(){
-      if(this.form?.name == undefined){
+      if(this.form?.name == undefined || this.form.name === ''){
         this.errorArray.push("error");
         return //to prevent sending request to api
       }

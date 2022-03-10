@@ -15,8 +15,10 @@
   "no_posts": "Selles kategoorias pole postitusi",
   "category": "Kategooria",
   "postAdd" : "Postituse lisamine õnnestus!",
+  "categoryAdd" : "Postituse {name} lisamine õnnestus!",
   "postUpdate" : "Postitus on edukalt uendatud!",
   "errorPost": "Viga! Postituse maksimaalne pikkus on 140 tähemärki ja minimaalne pikkus on 1 märk! Ja palun valige selle postituse jaoks kategooria!",
+  "errorCategory": "Viga! Maksimaalne pikkus on 15 ja minimaalne pikkus on 1 ning kategooria võib sisaldada ainult tähti, numbreid ja allkriipse, ilma tühikuteta!",
   "notFoundPost": "Selle ID-ga postitust pole või proovige lehte värskendada",
   "notFoundCategory": "Selle ID-ga kategooriat pole või proovige lehte värskendada",
   "notfound": "EI LEITUD"

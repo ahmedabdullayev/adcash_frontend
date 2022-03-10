@@ -11,7 +11,6 @@ export default {
                 url: '/post/' + id
             })
                 .then((response: AxiosResponse) => {
-                    console.log(response.data)
                     commit('setPost', response.data)
                     return resolve(<Posts[]> response.data)
                 }).catch((err: Error)=>{

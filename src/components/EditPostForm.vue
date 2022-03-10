@@ -117,7 +117,6 @@ export default defineComponent({
             this.errorArray = []
             this.loader = false;
             this.success = true
-            console.warn(res.data)
           })
           .catch((error) =>{
             this.errorArray.push(error);
