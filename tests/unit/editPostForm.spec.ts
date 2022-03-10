@@ -31,7 +31,6 @@ describe('Edit post form', () => {
         await wrapper.vm.$nextTick()
         expect(wrapper.vm.post).toStrictEqual(body)
         await wrapper.vm.$nextTick()
-        expect(wrapper.text()).toMatch("Edit post #")
         expect(wrapper.vm.post).not.toBe(null)
     })
 

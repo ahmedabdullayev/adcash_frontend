@@ -32,7 +32,7 @@ describe('Category form', () => {
         wrapperFind.trigger('click')
         await wrapper.vm.$nextTick()
         expect(spy).toHaveBeenCalled()
-        expect((wrapper.vm.errorArray as []).length > 0).toBe(false)
+        expect((wrapper.vm.errorArray as []).length > 0).toBe(true)
         jest.restoreAllMocks()
     })
 })
