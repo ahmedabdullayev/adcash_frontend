@@ -109,6 +109,7 @@ export default defineComponent({
 .rout {
   border: 5px solid @borderColor;
   background-color: #42b983;
+  padding: 3px;
   border-radius: 4px;
   color: white;
   position: relative;
@@ -123,6 +124,6 @@ export default defineComponent({
 
 .rout:active {
   box-shadow: none;
-  top: 5px;
+  top: 1px;
 }
 </style>
